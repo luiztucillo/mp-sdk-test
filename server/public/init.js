@@ -31,7 +31,7 @@ class MP {
     this.currentBin = null;
 
     this.currentCard = 1;
-    this.maxCards = 3;
+    this.maxCards = 2;
   }
 
   init () {
