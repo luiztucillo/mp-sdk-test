@@ -31,8 +31,7 @@ class MP {
     this.currentBin = null;
 
     this.currentCard = 1;
-
-
+    this.maxCards = 3;
   }
 
   init () {
@@ -206,7 +205,7 @@ class MP {
       this.currentCard++;
     }
 
-    if (this.currentCard > 2) {
+    if (this.currentCard > this.maxCards) {
       try {
         const response = await fetch('http://localhost:3000/payment', {
           method: 'POST',
@@ -226,11 +225,13 @@ class MP {
 
         const pre = document.createElement('div')
         document.querySelector('.main-container').appendChild(pre)
-        pre.innerHTML = `${body.length} pagamento criados<br /><br /> ${body.map(pay => `ID: ${pay.body.id} no valor de R$${pay.body.transaction_amount}`).join('<br />')}`
+        pre.innerHTML = 'SUCESSO'
+        // pre.innerHTML = `${body.length} pagamento criados<br /><br /> ${body.map(pay => `ID: ${pay.body.id} no valor de R$${pay.body.transaction_amount}`).join('<br />')}`
 
         return;
       } catch (e) {
         console.error('Erro ao pagar', e);
+        return;
       }
     }
 
